@@ -21,12 +21,11 @@ class VsTemplateModal(discord.ui.Modal):
 			required = True
 		)
 		self.day_label = discord.ui.Label(
-			text = f'開催日時はいつ？(必須)',
+			text = f'開催日時はいつに指定するの？(必須)',
 			component = self.day_input
 		)
 
 		self.game_type_select = discord.ui.Select(
-			placeholder = '選択してください',
 			options = [
 				discord.SelectOption(label = f'ワルマスクワッド', value = f'ワルマスクワッド'),
 				discord.SelectOption(label = f'フェスタチーム', value = f'フェスタチーム'),
@@ -35,12 +34,11 @@ class VsTemplateModal(discord.ui.Modal):
 			required = True
 		)
 		self.game_type_label = discord.ui.Label(
-			text = f'何を募集する？(必須)',
+			text = f'募集するレース形式を選択して(必須)',
 			component = self.game_type_select
 		)
 
 		self.target_late_select =  discord.ui.Select(
-			placeholder = '選択してください',
 			options = [
 				discord.SelectOption(label = f'誰でも参加OK', value = f'誰でも参加OK', default = True),
 				discord.SelectOption(label = f'A～E', value = f'A～E'),
@@ -50,12 +48,11 @@ class VsTemplateModal(discord.ui.Modal):
 			required = True
 		)
 		self.target_late_label = discord.ui.Label(
-			text = f'募集レート帯は？(必須)',
+			text = f'募集するレート帯を選択して(必須)',
 			component = self.target_late_select
 		)
 
 		self.style_select =  discord.ui.Select(
-			placeholder = f'好きなだけ選んでください',
 			options = [
 				discord.SelectOption(label = f'誰でも歓迎', value = f'誰でも歓迎', default = True),
 				discord.SelectOption(label = f'エンジョイ', value = f'エンジョイ'),
@@ -72,7 +69,7 @@ class VsTemplateModal(discord.ui.Modal):
 		)
 
 		self.style_label = discord.ui.Label(
-			text = f'募集スタイルは？(複数選択可、1つ以上必須)',
+			text = f'募集するスタイルを全て選択して(複数選択可、1つ以上必須)',
 			component = self.style_select
 		)
 
@@ -81,7 +78,7 @@ class VsTemplateModal(discord.ui.Modal):
 			required = False
 		)
 		self.comment_label = discord.ui.Label(
-			text = f'ルール・詳細など',
+			text = f'ルールや詳細などがあれば記載して',
 			component = self.comment_input
 		)
 
@@ -96,7 +93,7 @@ class VsTemplateModal(discord.ui.Modal):
 		party_title = f'対戦・メンバー募集'
 		embed = discord.Embed(
 			title = party_title,
-			description = "募集の詳細は下記のとおりです。楽しくレースしよう。",
+			description = "募集の詳細を以下に表示する。内容を確認して。",
 			color = discord.Colour.green()
 		)
 		embed.set_author(
@@ -105,24 +102,24 @@ class VsTemplateModal(discord.ui.Modal):
 		)
 		embed.set_thumbnail(url=interaction.user.display_avatar.url)
 		embed.add_field(
-			name = f'開催日時はいつ？', value = self.day_input.value,
+			name = f'開催日時はいつに指定するの？', value = self.day_input.value,
 			inline = False
 		)
 		embed.add_field(
-			name = f'何を募集する？', value = self.game_type_select.values[0],
+			name = f'募集するレース形式を選択して', value = self.game_type_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f'募集レート帯は？', value = self.target_late_select.values[0],
+			name = f'募集するレート帯を選択して', value = self.target_late_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f'募集スタイルは？', value = '\n'.join(self.style_select.values),
+			name = f'募集するスタイルを全て選択して', value = '\n'.join(self.style_select.values),
 			inline = False
         )
 		if self.comment_input.value:
 			embed.add_field(
-	    		name = f'ルール・詳細など', value = self.comment_input.value,
+	    		name = f'ルールや詳細などがあれば記載して', value = self.comment_input.value,
 		    	inline = False
 		    )
 
@@ -131,6 +128,13 @@ class VsTemplateModal(discord.ui.Modal):
 			content = f'{interaction.user.get_role(dl.member_role_id).mention}',
 			embed = embed
 		)
+
+		embed = discord.Embed(
+			title = 'Success', 
+			description = 'テンプレートの送信完了。確認して。', 
+			color = discord.Colour.green()
+		)
+		await interaction.followup.send_message(embed = embed, delete_after = 5.0)
 
 # ボタン
 class VsTempButton(discord.ui.Button):
