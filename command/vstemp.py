@@ -134,7 +134,7 @@ class VsTemplateModal(discord.ui.Modal):
 			description = 'テンプレートの送信完了。確認して。', 
 			color = discord.Colour.green()
 		)
-		await interaction.followup.send_message(embed = embed, delete_after = 5.0)
+		await interaction.response.send_message(embed = embed, delete_after = 5.0)
 
 # ボタン
 class VsTempButton(discord.ui.Button):
