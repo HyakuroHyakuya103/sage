@@ -54,15 +54,15 @@ class VsTemplateModal(discord.ui.Modal):
 
 		self.style_select =  discord.ui.Select(
 			options = [
-				discord.SelectOption(label = f'誰でも歓迎', value = f'誰でも歓迎', default = True),
-				discord.SelectOption(label = f'エンジョイ', value = f'エンジョイ'),
+				discord.SelectOption(label = f'誰でも歓迎', value = f'・誰でも歓迎', default = True),
+				discord.SelectOption(label = f'エンジョイ', value = f'・エンジョイ'),
 				discord.SelectOption(label = f'ガチ', value = f'ガチ'),
-				discord.SelectOption(label = f'練習メイン', value = f'練習メイン'),
-				discord.SelectOption(label = f'雑談メイン', value = f'雑談メイン'),
-				discord.SelectOption(label = f'1 VS 1', value = f'1 VS 1'),
-				discord.SelectOption(label = f'VCなしOK', value = f'VCなしOK'),
-				discord.SelectOption(label = f'聞き専OK', value = f'聞き専OK'),
-				discord.SelectOption(label = f'配信OK', value = f'配信OK')
+				discord.SelectOption(label = f'練習メイン', value = f'・練習メイン'),
+				discord.SelectOption(label = f'雑談メイン', value = f'・雑談メイン'),
+				discord.SelectOption(label = f'1 VS 1', value = f'・1 VS 1'),
+				discord.SelectOption(label = f'VCなしOK', value = f'・VCなしOK'),
+				discord.SelectOption(label = f'聞き専OK', value = f'・聞き専OK'),
+				discord.SelectOption(label = f'配信OK', value = f'・配信OK')
 			],
 			min_values = 1,
 			max_values = 9
@@ -102,24 +102,24 @@ class VsTemplateModal(discord.ui.Modal):
 		)
 		embed.set_thumbnail(url=interaction.user.display_avatar.url)
 		embed.add_field(
-			name = f'開催日時はいつに指定するの？', value = self.day_input.value,
+			name = f':clock3:開催日時', value = self.day_input.value,
 			inline = False
 		)
 		embed.add_field(
-			name = f'募集するレース形式を選択して', value = self.game_type_select.values[0],
+			name = f':checkered_flag:レース形式', value = self.game_type_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f'募集するレート帯を選択して', value = self.target_late_select.values[0],
+			name = f':dart:レート帯', value = self.target_late_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f'募集するスタイルを全て選択して', value = '\n'.join(self.style_select.values),
+			name = f':label:募集スタイル', value = '\n'.join(self.style_select.values),
 			inline = False
         )
 		if self.comment_input.value:
 			embed.add_field(
-	    		name = f'ルールや詳細などがあれば記載して', value = self.comment_input.value,
+	    		name = f':pencil:詳細', value = self.comment_input.value,
 		    	inline = False
 		    )
 
