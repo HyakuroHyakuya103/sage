@@ -102,24 +102,24 @@ class VsTemplateModal(discord.ui.Modal):
 		)
 		embed.set_thumbnail(url=interaction.user.display_avatar.url)
 		embed.add_field(
-			name = f':clock3:開催日時', value = self.day_input.value,
+			name = f'🕒開催日時', value = self.day_input.value,
 			inline = False
 		)
 		embed.add_field(
-			name = f':checkered_flag:レース形式', value = self.game_type_select.values[0],
+			name = f'🏁レース形式', value = self.game_type_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f':dart:レート帯', value = self.target_late_select.values[0],
+			name = f'🎯レート帯', value = self.target_late_select.values[0],
 			inline = False
 		)
 		embed.add_field(
-			name = f':label:募集スタイル', value = '\n'.join(self.style_select.values),
+			name = f'🏷️募集スタイル', value = '\n'.join(self.style_select.values),
 			inline = False
         )
 		if self.comment_input.value:
 			embed.add_field(
-	    		name = f':pencil:詳細', value = self.comment_input.value,
+	    		name = f'📝詳細', value = self.comment_input.value,
 		    	inline = False
 		    )
 
